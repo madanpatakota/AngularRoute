@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SchoolService } from './school.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularRouting';
+
+  subscription: Subscription;
+  constructor(private schoolService: SchoolService) {
+    this.subscription = this.schoolService.IsAutheticated.subscribe((param) => {
+      debugger;
+      console.log(param + " IsAuthenticataed subscription App component");
+    });
+
+  }
 }
